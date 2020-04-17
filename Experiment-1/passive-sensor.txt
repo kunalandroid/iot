@@ -1,0 +1,43 @@
+const int SignalPin = 7;
+
+void setup(){
+  
+  Serial.begin(9600);
+
+}
+
+void loop(){
+  
+  long time, in, cm;
+  pinMode(SignalPin, OUTPUT);
+  digitalWrite(SignalPin, LOW);
+  delay(2);
+  digitalWrite(SignalPin, HIGH);
+  delay(5);
+  digitalWrite(SignalPin, LOW);
+  pinMode(SignalPin, INPUT);
+  time = pulseIn(SignalPin, HIGH);
+  in = MsToIn(time);
+  cm = MsToCm(time);
+  
+  Serial.print(in);
+  Serial.print("in, ");
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  
+  delay(100);
+
+}
+
+long MsToIn(long ms){
+  
+  return ms / 74 / 2;
+  
+}
+
+long MsToCm(long ms){
+  
+  return ms / 29 / 2;
+
+}

@@ -1,0 +1,21 @@
+int SignalPin = 7;
+int motionValue;
+
+void setup()
+{
+	Serial.begin(9600);
+  	pinMode(SignalPin, INPUT);
+}
+
+void loop()
+{
+	motionValue = digitalRead(SignalPin);
+  if (motionValue == HIGH){
+    Serial.println("A movement has been detected");
+    delay(100);
+  }
+  else{
+    Serial.println("There is NO movement");
+    delay(100);
+  }
+}
